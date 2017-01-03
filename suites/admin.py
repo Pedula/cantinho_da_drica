@@ -13,15 +13,15 @@ class ControleQuartoAdmin(admin.ModelAdmin):
 	nome_quarto.short_description = 'Nome dos quartos'
 
 
-	list_display = ('txt_data_inicio', 'txt_data_fim', nome_quarto)
+	list_display = ('data_inicio', 'data_fim', nome_quarto)
 
-	def txt_data_inicio(self, instance):
+	def data_inicio(self, instance):
 		if instance.data_inicio:
 			return timezone.localtime(instance.data_inicio).strftime("%d/%m/%Y %H:%M")
 		else:
 			return "--"
 
-	def txt_data_fim(self, instance):
+	def data_fim(self, instance):
 		if instance.data_fim:
 			return timezone.localtime(instance.data_fim).strftime("%d/%m/%Y %H:%M")
 		else:
