@@ -16,9 +16,13 @@ class NomeQuarto(models.Model):
 		verbose_name_plural = u'nome dos quartos'
 
 class ControleQuarto(models.Model):
-	data_inicio = models.DateTimeField(auto_now_add=False, auto_now=False, null=True, blank=True) 
-	data_fim = models.DateTimeField(auto_now_add=False, auto_now=False, null=True, blank=True) 
-	nomeQuartos = models.ManyToManyField(NomeQuarto, null=True, blank=True)
+	data_inicio = models.DateTimeField(auto_now_add=False, auto_now=False, null=False, blank=False, verbose_name="Data de entrada:") 
+	data_fim = models.DateTimeField(auto_now_add=False, auto_now=False, null=False, blank=False, verbose_name="Data de saída") 
+	nomeQuartos = models.ManyToManyField(NomeQuarto, null=False, blank=False, verbose_name="Nome do quarto:")
+	diaria = models.IntegerField(null=True, blank=True, verbose_name="Valor da diária")
+	qtd_dias = models.IntegerField(null=True, blank=True, verbose_name="Quantidade de dias:")
+	valor_reserva = models.FloatField(null=True, blank=True, verbose_name="valor da reserva:")
+	valor_total = models.FloatField(null=True, blank=True, verbose_name="valor total:") 
 
 	class Meta:
 		db_table = 'ControleQuarto'
