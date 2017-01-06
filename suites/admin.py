@@ -19,8 +19,6 @@ class ControleQuartoAdmin(admin.ModelAdmin):
 
 
 
-	list_display = ('data_inicio', 'data_fim', nome_quarto, hospedes)
-
 	def data_inicio(self, instance):
 		if instance.data_inicio:
 			return timezone.localtime(instance.data_inicio).strftime("%d/%m/%Y %H:%M")
@@ -32,6 +30,8 @@ class ControleQuartoAdmin(admin.ModelAdmin):
 			return timezone.localtime(instance.data_fim).strftime("%d/%m/%Y %H:%M")
 		else:
 			return "--"
+
+	list_display = ('data_inicio', 'data_fim', nome_quarto, hospedes, 'status')
 
 admin.site.register(NomeQuarto)
 admin.site.register(ControleQuarto, ControleQuartoAdmin)

@@ -17,10 +17,19 @@ class NomeQuarto(models.Model):
 		verbose_name_plural = u'nome dos quartos'
 
 class ControleQuarto(models.Model):
+	NEGOCIANDO = 1
+	FECHADO = 2
+
+	STATUS_QUARTO = (
+		(NEGOCIANDO, u'Negociando'),
+		(FECHADO, u'Fechado'),
+	)
+
 	data_inicio = models.DateTimeField(auto_now_add=False, auto_now=False, null=False, blank=False, verbose_name="Data de entrada:") 
 	data_fim = models.DateTimeField(auto_now_add=False, auto_now=False, null=False, blank=False, verbose_name="Data de saída") 
 	nomeQuartos = models.ManyToManyField(NomeQuarto, null=False, blank=False, verbose_name="Nome do quarto:")
 	nomeHospede = models.ManyToManyField("Hospede", null=False, blank=False, verbose_name="Nome do Hospede:")
+	status = models.PositiveSmallIntegerField(choices=STATUS_QUARTO, null=False, blank=False, default=NEGOCIANDO)
 	diaria = models.IntegerField(null=True, blank=True, verbose_name="Valor da diária")
 	qtd_dias = models.FloatField(null=True, blank=True, verbose_name="Quantidade de dias:")
 	valor_total = models.FloatField(null=True, blank=True, verbose_name="valor total:") 
