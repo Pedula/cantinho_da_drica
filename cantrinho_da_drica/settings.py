@@ -60,9 +60,16 @@ WSGI_APPLICATION = 'cantrinho_da_drica.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
+    
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+
+        # LOCAL
+        'NAME': os.getenv('APP_DB_NAME', 'drica_suites'),
+        'USER': os.getenv('APP_DB_USER', 'root'),
+        'PASSWORD': os.getenv('APP_DB_PASS', 'renato123'),
+        'HOST': os.getenv('APP_DB_HOST', '127.0.0.1'),
+
     }
 }
 
