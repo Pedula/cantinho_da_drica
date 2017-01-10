@@ -34,6 +34,7 @@ class ControleQuarto(models.Model):
 	qtd_dias = models.FloatField(null=True, blank=True, verbose_name="Quantidade de dias:")
 	valor_total = models.FloatField(null=True, blank=True, verbose_name="valor total:") 
 	valor_reserva = models.FloatField(null=True, blank=True, verbose_name="valor da reserva:")
+	observacao = models.TextField(null=True, blank=True, verbose_name="Observação")
 
 
 
