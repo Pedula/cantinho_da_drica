@@ -19,10 +19,14 @@ class NomeQuarto(models.Model):
 class ControleQuarto(models.Model):
 	NEGOCIANDO = 1
 	FECHADO = 2
+	RESERVADO = 3
+	CANCELADO = 4
 
 	STATUS_QUARTO = (
 		(NEGOCIANDO, u'Negociando'),
+		(RESERVADO, u'Reservado'),
 		(FECHADO, u'Fechado'),
+		(CANCELADO, u'Cancelado'),
 	)
 
 	data_inicio = models.DateTimeField(auto_now_add=False, auto_now=False, null=False, blank=False, verbose_name="Data de entrada:") 

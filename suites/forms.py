@@ -2,6 +2,7 @@
 from django import forms
 from suites.models import ControleQuarto
 from django.core.exceptions import ValidationError
+from django.db.models import Q
 
 
 
@@ -40,9 +41,9 @@ class ControleQuartoForm(forms.ModelForm):
 				raise forms.ValidationError({'data_fim': (u"A data fim deve ser maior que a data início")})
 
 			total = 0
-			total += ControleQuarto.objects.filter(data_inicio__lte=data_inicio,data_fim__gte=data_inicio, nomeQuartos=nomeQuartos).exclude(pk=self.instance.id).count()
-			total += ControleQuarto.objects.filter(data_inicio__lte=data_fim,data_fim__gte=data_fim, nomeQuartos=nomeQuartos).exclude(pk=self.instance.id).count()
-			total += ControleQuarto.objects.filter(data_inicio__gte=data_inicio,data_fim__lte=data_fim, nomeQuartos=nomeQuartos).exclude(pk=self.instance.id).count()
+			total += ControleQuarto.objects.filter(~Q(status=4), data_inicio__lte=data_inicio,data_fim__gte=data_inicio, nomeQuartos=nomeQuartos ).exclude(pk=self.instance.id).count()
+			total += ControleQuarto.objects.filter(~Q(status=4), data_inicio__lte=data_fim,data_fim__gte=data_fim, nomeQuartos=nomeQuartos).exclude(pk=self.instance.id).count()
+			total += ControleQuarto.objects.filter(~Q(status=4), data_inicio__gte=data_inicio,data_fim__lte=data_fim, nomeQuartos=nomeQuartos).exclude(pk=self.instance.id).count()
 			if total > 0:
 				raise forms.ValidationError({'data_inicio': (u"Já existe um quarto cadastrado para este período")})
 
