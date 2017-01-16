@@ -15,6 +15,7 @@ class NomeQuarto(models.Model):
 		app_label = 'suites'
 		verbose_name = u'nome do quarto'
 		verbose_name_plural = u'nome dos quartos'
+		ordering = ['nome']
 
 class ControleQuarto(models.Model):
 	NEGOCIANDO = 1
@@ -29,16 +30,36 @@ class ControleQuarto(models.Model):
 		(CANCELADO, u'Cancelado'),
 	)
 
+	IVO = 1
+	SANDRA = 2
+	RENATO = 3
+	RENAN = 4
+	VIVIANE = 5
+	GARNIZE = 6
+	OUTROS = 7
+
+	VENDEDOR = (
+		(GARNIZE, u'Garnize'),
+		(RENATO, u'Renato'),
+		(IVO, u'Ivo'),
+		(SANDRA, u'Sandra'),
+		(RENAN, u'Renan'),
+		(VIVIANE, u'Viviane'),
+		(OUTROS, u'Outros'),
+	)
+
 	data_inicio = models.DateTimeField(auto_now_add=False, auto_now=False, null=False, blank=False, verbose_name="Data de entrada:") 
 	data_fim = models.DateTimeField(auto_now_add=False, auto_now=False, null=False, blank=False, verbose_name="Data de saída") 
 	nomeQuartos = models.ManyToManyField(NomeQuarto, null=False, blank=False, verbose_name="Nome do quarto:")
 	nomeHospede = models.ManyToManyField("Hospede", null=False, blank=False, verbose_name="Nome do Hospede:")
 	status = models.PositiveSmallIntegerField(choices=STATUS_QUARTO, null=False, blank=False, default=NEGOCIANDO)
+	vendedor = models.PositiveSmallIntegerField(choices=VENDEDOR, null=False, blank=False, default=IVO)
 	diaria = models.IntegerField(null=True, blank=True, verbose_name="Valor da diária")
 	qtd_dias = models.FloatField(null=True, blank=True, verbose_name="Quantidade de dias:")
 	valor_total = models.FloatField(null=True, blank=True, verbose_name="valor total:") 
 	valor_reserva = models.FloatField(null=True, blank=True, verbose_name="valor da reserva:")
 	observacao = models.TextField(null=True, blank=True, verbose_name="Observação")
+
 
 
 
@@ -54,6 +75,11 @@ class ControleQuarto(models.Model):
 		app_label = 'suites'
 		verbose_name = u'Controle do quarto'
 		verbose_name_plural = u'Controle dos quartos'
+		ordering = ('-data_inicio',)
+
+
+
+
 
 class Hospede(models.Model):
 	nome = models.CharField(unique=True,max_length=100, null=False, blank=False, verbose_name="Nome do cliente:")
@@ -66,3 +92,4 @@ class Hospede(models.Model):
 		app_label = 'suites'
 		verbose_name = u'Hospede'
 		verbose_name_plural = u'Hospedes'
+		ordering = ['nome']

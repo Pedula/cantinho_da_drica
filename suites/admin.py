@@ -31,7 +31,7 @@ class ControleQuartoAdmin(admin.ModelAdmin):
 		else:
 			return "--"
 
-	list_display = ('data_inicio', 'data_fim', nome_quarto, hospedes, 'status')
+	list_display = ('data_inicio', 'data_fim', nome_quarto, hospedes, 'vendedor', 'status')
 
 admin.site.register(NomeQuarto)
 admin.site.register(ControleQuarto, ControleQuartoAdmin)
