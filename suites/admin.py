@@ -31,7 +31,14 @@ class ControleQuartoAdmin(admin.ModelAdmin):
 		else:
 			return "--"
 
-	list_display = ('data_inicio', 'data_fim', nome_quarto, hospedes, 'vendedor', 'status')
+	# def pagamento(self):
+	# 	if self.forma_pagamento:
+	# 		return self.forma_pagamento
+	# 	else:
+	# 		return "--"
+		
+
+	list_display = ('data_inicio', 'data_fim', nome_quarto, hospedes, 'vendedor', 'status', 'forma_pagamento')
 
 admin.site.register(NomeQuarto)
 admin.site.register(ControleQuarto, ControleQuartoAdmin)
