@@ -21,5 +21,5 @@ def home(request):
 	datas = ControleQuarto.objects.all()
 	for data in datas:
 		context.append(data.to_dict())
-	return render_to_response(json.dumps(context), content_type='application/json')
 
+	return render_to_response('home.json', json.dumps(context), content_type='application/json')

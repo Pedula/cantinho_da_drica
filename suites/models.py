@@ -40,12 +40,12 @@ class ControleQuarto(models.Model):
 	OUTROS  = 7
 
 	VENDEDOR = (
-		(GARNIZE, u'Garnize'),
-		(RENATO, u'Renato'),
 		(IVO, u'Ivo'),
-		(SANDRA, u'Sandra'),
+		(RENATO, u'Renato'),
 		(RENAN, u'Renan'),
+		(SANDRA, u'Sandra'),
 		(VIVIANE, u'Viviane'),
+		(GARNIZE, u'Garnize'),
 		(OUTROS, u'Outros'),
 	)
 
